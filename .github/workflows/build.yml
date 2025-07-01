@@ -39,7 +39,7 @@ jobs:
       - name: Upload kernel
         uses: actions/upload-artifact@v4
         with:
-          name: "KernelSU-Next-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
+          name: "BatAxeKernel-SU-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
           path: |
             build/*.tar
 
@@ -50,25 +50,18 @@ jobs:
       contents: write
 
     steps:
-      - name: Download All Artifacts
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
 
-      - name: Release Build Kernel
+      - name: Create release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.event.inputs.tag }}
-          name: "${{ github.event.inputs.tag }}"
-          draft: true
-          generateReleaseNotes: true
-          makeLatest: true
-          skipIfReleaseExists: true
-          token: ${{ github.event.inputs.token != '' && github.event.inputs.token || github.token }}
-          removeArtifacts: true
-          artifacts: "artifacts/**/*.zip"
-
-      - name: Cleanup Artifacts
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: S*
+          name: "KernelSU-Next-beyond-stock-One-UI-${{ github.event.inputs.tag }}"
+          draft: false
+          prerelease: false
+          token: ${{ secrets.TOKEN }}          
+          artifacts: "artifacts/**/*.tar"
+          body: "Commit SHA: ${{ github.sha }}"
