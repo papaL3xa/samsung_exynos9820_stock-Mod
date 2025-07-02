@@ -1,3 +1,3 @@
-[submodule "KernelSU-Next"]
-	path = KernelSU-Next
-	url = https://github.com/KernelSU-Next/KernelSU-Next.git
+[submodule "cd/samsung_exynos9820_stock-Mod"]
+    path = cd/samsung_exynos9820_stock-Mod
+    url = https://github.com/papaL3xa/KernelSU-Next.git
