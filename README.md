@@ -1,12 +1,14 @@
 <div align="center">
-<div align="center"># BatAxeKernel
-Galaxy S10/Note10 Kernel with KernelSU Next &amp; SuSFS for OneUI 3/4 | !!! FORCE PUSH !!!
+<div align="center">
+  <h1 align="center">BatAxeKernel 🦇AX fork from **Ravindu644 Repo** for Galaxy S10/Note10 devices.</h1>
+<h4>Galaxy S10/Note10 Kernel with KernelSU Next &amp; SuSFS for OneUI 3/4 | !!! FORCE PUSH !!!</h4>
+  
 </div>
 <div align="center">
   <img loading="lazy" src="https://github.com/ebeth03/builds/blob/56e710296058af686d7900c8f4728ba76116a7f7/KARUNG/bataxe.png?raw=true"/>
 </div>
 
-<h4 align="center">BatAxeKernel 🦇AX fork from **Ravindu644 Repo** for Galaxy S10/Note10 devices.</h4>
+
 
 # Features
 
@@ -48,10 +50,11 @@ Galaxy S10/Note10 Kernel with KernelSU Next &amp; SuSFS for OneUI 3/4 | !!! FORC
 
 # How to Build
 
-Copy command below and paste on your terminal to install all necessary dependencies
+<i>Copy command below and paste on your terminal to install all necessary dependencies</i>
 
 ```
 sudo apt update && sudo apt upgrade -y && sudo apt install --no-install-recommends -y git make build-essential gcc-aarch64-linux-gnu clang lld llvm && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash && sudo apt install -y git-lfs && git lfs install
+
 ```
 
 Clone this repository
