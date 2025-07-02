@@ -1,4 +1,4 @@
-name: build and release
+name: TRIAL build
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        device: [beyond2, beyond1, beyond0, beyondxks, d1, d2s, d1x, d2x]
+        device: [d1]
 
     steps:
       - name: Checkout source
@@ -39,7 +39,7 @@ jobs:
       - name: Upload kernel
         uses: actions/upload-artifact@v4
         with:
-          name: "BatAxeKernel-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
+          name: "BatAxeKernel-Trial-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
           path: |
             build/*.tar
 
@@ -59,7 +59,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.event.inputs.tag }}
-          name: "BatAxeKernel{{ github.event.inputs.tag }}"
+          name: "BatAxeKernel-trial-${{ env.BUILD_KERNEL_VERSION }}-{{ github.event.inputs.tag }}"
           draft: false
           prerelease: false
           token: ${{ secrets.TOKEN }}          
