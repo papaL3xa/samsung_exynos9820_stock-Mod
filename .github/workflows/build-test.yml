@@ -1,4 +1,4 @@
-name: TRIAL build-test
+name: Build-Test
 
 on:
   workflow_dispatch:
@@ -40,7 +40,7 @@ jobs:
       - name: Upload kernel
         uses: actions/upload-artifact@v4
         with:
-          name: "BatAxeKernel-Trial-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
+          name: "BatAxeKernel-Test-${{ env.BUILD_KERNEL_VERSION }}-${{ matrix.device }}-stock-One-UI"
           path: |
             build/*.tar
           if-no-files-found: error
