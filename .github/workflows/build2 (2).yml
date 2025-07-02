@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
     inputs:      
       tag:
-        description: 'Release Tag'
-        required: true        
+        description: 'Version'
+        required: true 
+        default: 'v1.0Trial'
 
 jobs:
   build:
