@@ -20,7 +20,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        device: ${{ fromJSON(github.event.inputs.devices) }}
+        device: '["beyond0lte", "beyond1lte", "beyond2lte", "beyondx", "d1", "d1xks", "d2s", "d2x"]'
 
     steps:
       - name: Checkout source
