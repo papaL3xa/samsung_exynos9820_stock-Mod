@@ -6,7 +6,10 @@ on:
       tag:
         description: 'Release Tag'
         required: true  
-        
+        devices:
+        description: 'Devices'
+        required: true
+        default: '["beyond0lte", "beyond1lte", "beyond2lte", "beyondx", "d1", "d1xks", "d2s", "d2x"]'
 
 jobs:
   build:
@@ -15,11 +18,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-      devices:
-        description: 'Devices'
-        required: true
-        default: '["beyond0lte", "beyond1lte", "beyond2lte", "beyondx", "d1", "d1xks", "d2s", "d2x"]'
-        device: [d1]
+        device: ${{ fromJSON(github.event.inputs.devices) }}
 
     steps:
       - name: Checkout source
