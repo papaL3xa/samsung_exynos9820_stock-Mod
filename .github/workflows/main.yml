@@ -1,0 +1,56 @@
+name: build Trial
+
+on:
+  workflow_dispatch:
+    inputs:      
+      version:
+        description: 'Trial version'
+        required: true
+        default: 'v'
+      tag:
+        description: 'Release Tag'
+        required: true
+        default: 'v-release'
+      devices:
+        description: 'Devices'
+        required: true
+        default: '["beyond0lte", "beyond1lte", "beyond2lte", "beyondx", "d1", "d1xks", "d2s", "d2x"]'     
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        device: ${{ fromJSON(github.event.inputs.devices) }}
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up build environment
+        run: |
+          sudo apt update -y  
+          sudo apt install libncurses5-dev -y
+          wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb && sudo dpkg -i libtinfo5_6.3-2ubuntu0.1_amd64.deb         
+          
+      - name: Set environment variable
+        run: |
+          SHA=$(git rev-parse --short ${{ github.sha }})
+          echo BUILD_DATE=$(date +'%Y%m%d') >> $GITHUB_ENV
+          echo BUILD_KERNEL_VERSION=CI-${{ github.event.inputs.version }}-$SHA >> $GITHUB_ENV
+          
+      - name: Building Kernel
+        run: |
+            bash build.sh -m ${{ matrix.device }} -v ${{ env.BUILD_KERNEL_VERSION }} -l ${{ github.event.inputs.llvm }} -r n
+
+      - name: Upload kernel
+        uses: actions/upload-artifact@v4
+        with:
+          name: "BatAxeKernel--${{ env.BUILD_KERNEL_VERSION }}-${{ env.BUILD_DATE }}-${{ env.BUILD_DEVICE }}-${{ matrix.device }}""
+          path: |
+            build/*.tar
+          if-no-files-found: error  
