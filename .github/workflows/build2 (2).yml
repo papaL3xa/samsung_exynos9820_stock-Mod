@@ -1,4 +1,4 @@
-name: TRIAL build
+name: TRIAL build-test
 
 on:
   workflow_dispatch:
