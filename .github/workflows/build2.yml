@@ -59,7 +59,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ github.event.inputs.tag }}
-          name: "BatAxeKernel-trial-${{ env.BUILD_KERNEL_VERSION }}-{{ github.event.inputs.tag }}"
+          name: "BatAxeKernel-trial-${{ env.BUILD_KERNEL_VERSION }}-${{ env.BUILD_DATE }}"
           draft: false
           prerelease: false
           token: ${{ secrets.TOKEN }}          
