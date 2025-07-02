@@ -6,14 +6,11 @@ on:
       tag:
         description: 'Release Tag'
         required: true  
-        devices:
-        description: 'Devices'
-        required: true
-        default: '[beyond2, beyond1, beyond0, beyondxks, d1, d2s, d1x, d2x]'
+       
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     strategy:
