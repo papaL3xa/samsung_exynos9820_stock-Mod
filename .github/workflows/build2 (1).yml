@@ -5,7 +5,8 @@ on:
     inputs:      
       tag:
         description: 'Release Tag'
-        required: true        
+        required: true  
+        
 
 jobs:
   build:
@@ -14,6 +15,10 @@ jobs:
       contents: write
     strategy:
       matrix:
+      devices:
+        description: 'Devices'
+        required: true
+        default: '["beyond0lte", "beyond1lte", "beyond2lte", "beyondx", "d1", "d1xks", "d2s", "d2x"]'
         device: [d1]
 
     steps:
